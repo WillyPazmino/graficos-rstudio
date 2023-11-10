@@ -4,3 +4,33 @@ library(dplyr)
 library(ggplot2)
 library(tidyr)
 library("gridExtra")
+#Grafica de puntos 
+ggplot(data = D1) + aes(x = X, y = Y)+ geom_point()
+ggplot(data = enoe) + geom_point(mapping = aes(x = anios_esc, y = ingreso_mensual))
+	
+#Color en los puntos 
+ggplot(data = enoe) + geom_point(mapping = aes(x = anios_esc, y = ingreso_mensual), color="")
+					
+#Categorizar por color variables cualitativas
+ggplot(data = enoe) +  geom_point(mapping = aes(x = anios_esc, y = ingreso_mensual, color=tipo_empleo))
+						
+#Tipo de puntos 
+ggplot(data = enoe) + geom_point(mapping = aes(x = anios_esc, y = ingreso_mensual, shape=tipo_empleo))
+					
+#Difuminación de puntos (esquema de transparencia)
+ggplot(data=enoe)+geom_point(mapping=aes(x=anios_esc,y=edad,alpha=ingreso_mensual ))
+					
+#Puntos apilados 
+ggplot(data = enoe) + geom_point(mapping = aes(x=anios_esc, y =ingreso_mensual ), position = "jitter")
+							
+#Puntos de varios tamaños 
+ggplot(data=ingreso_edad, mapping = aes(x=edad_jefe, y=ingreso)) +
+  geom_point(aes(size = hogares), alpha = 1/3)
+					Transparencia 
+
+#Grafica de círculos con dos variables cualitativas 
+ggplot(data = enigh) + geom_count(mapping = aes(x = clase_hog, y = educa_jefe))
+
+ggplot(data=D2) + aes(x = X, y = Y, color = CP) + geom_point() + labs(title = "SAF", subtitle = "Febrero 2020", caption = "Grupo_SAF") + guides(color = guide_legend(title = "Tratamientos")) + theme(panel.grid = element_blank(), panel.background = element_rect(fill = "transparent", color = "black", size = 1))
+# Observando el patrón espacial de los datos 
+plot(N ~ E, data=PF1, asp = 1, cex = 2 *PF1$DAP/max(PF1$DAP),pch = 1)
